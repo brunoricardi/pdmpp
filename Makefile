@@ -13,14 +13,14 @@ LDFLAGS=-lblas -llapack -lgslcblas -lgsl -std=gnu++14
 OMP=-fopenmp
 
 # source files
-SOURCE_SERIAL=./opt/pdm_opt.cpp
+SOURCE_SERIAL=./serial/pdm_serial.cpp
 SOURCE_PARALLEL=./omp/pdm_omp.cpp
 
 # path to where binary is going
 PATH_BIN=./bin
 
 # binary names
-EXEC_SERIAL=pdm_opt
+EXEC_SERIAL=pdm_serial
 EXEC_PARALLEL=pdm_omp
 
 serial:

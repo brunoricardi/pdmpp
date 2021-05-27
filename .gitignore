@@ -3,6 +3,7 @@
 /compilation
 /omp/*.info
 /omp/pdm_omp{0..20}.cpp
-/opt/*.info
-/opt/pdm_opt{0..20}.cpp
+pdm.cpp
+/serial/*.info
+/serial/pdm_opt{0..20}.cpp
 /vector
