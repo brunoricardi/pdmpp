@@ -1,0 +1,9 @@
+#!/bin/bash
+
+module load compilers/gnu/7.3
+module load libraries/blas/3.8.0-intel2018-7.3
+module load libraries/lapack/3.8.0-gnu-7.3
+module load libraries/gsl/2.1-gnu-5.3
+
+g++ -lblas -llapack -lgslcblas -lgsl -std=gnu++14 pdm.cpp
+echo -e "----- COMPILATION DONE -----"

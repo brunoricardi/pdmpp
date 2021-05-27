@@ -1,0 +1,6 @@
+#!/bin/bash
+
+module load /home/sw/modules/gcc-7.4.0
+
+g++ -lblas -llapack -lgslcblas -lgsl -std=gnu++14 -fopenmp ../opt/pdm_opt.cpp -o ../opt/pdm_opt
+echo -e "----- COMPILATION DONE -----"
