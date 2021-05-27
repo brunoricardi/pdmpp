@@ -2,8 +2,8 @@
 /bin
 /compilation
 /omp/*.info
-/omp/pdm_omp{0..20}.cpp
+/omp/pdm_omp{0..6}.cpp
 pdm.cpp
 /serial/*.info
-/serial/pdm_opt{0..20}.cpp
+/serial/pdm_opt{0..2}.cpp
 /vector
