@@ -6,8 +6,8 @@ PDM++ calculates pair density-matrices to be used in quantum many-body stochasti
 The low temperature (short imaginary-time) expressions are obtained by numerical convolutions of their high-temperature expressions, which are calculated using a semi-classical approach [cite,cite]. 
 Currently, a few interaction potentials are implemented:
 - Free particle
-- 6-12 Lennard Jones
-- Aziz1995 for $^3$He
+- 6-12 Lennard-Jones
+- Aziz1995 for He-3
 Additional interactions can be easily implemented in one of the subroutines.
 
 ## How to cite this
