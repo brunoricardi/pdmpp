@@ -16,7 +16,7 @@ As the *LICENSE* says, this is an open-source scientific code. You are free to m
 
 Bruno R. de Abreu, *PDM++*, available at https://github.com/brunoricardi/pdmpp/ (2021)
 
-I provided a *pdm++.bib* file with this information.
+I provided a *pdmpp.bib* file with this information.
 
 
 ## Overview of the code
