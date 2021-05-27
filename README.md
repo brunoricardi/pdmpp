@@ -2,8 +2,8 @@
 
 ## Introduction
 Welcome to PDM++. This is a scientific code written by Bruno Abreu (babreu.scientist@gmail.com).
-PDM++ calculates pair density-matrices to be used in quantum many-body stochastic simulations, such as Path Integral Monte Carlo (PIMC) [cite].
-The low temperature (short imaginary-time) expressions are obtained by numerical convolutions of their high-temperature expressions, which are calculated using a semi-classical approach [cite,cite]. 
+PDM++ calculates pair density-matrices to be used in quantum many-body stochastic simulations, such as Path Integral Monte Carlo (PIMC) [1].
+The low temperature (short imaginary-time) expressions are obtained by numerical convolutions of their high-temperature expressions, which are calculated using a semi-classical approach [2,3]. 
 Currently, a few interaction potentials are implemented:
 - Free particle
 - 6-12 Lennard-Jones
