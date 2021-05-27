@@ -1,8 +1,8 @@
 /bessel
 /bin
 /compilation
-/omp/parallelization.info
+/omp/*.info
 /omp/pdm_omp{0..20}.cpp
-/opt/optmizations.info
+/opt/*.info
 /opt/pdm_opt{0..20}.cpp
 /vector
