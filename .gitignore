@@ -1,4 +1,4 @@
-./bessel
+/bessel
 ./bin
 ./compilation
 ./omp/parallelization.info
