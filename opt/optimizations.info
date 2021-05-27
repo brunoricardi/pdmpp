@@ -1,4 +1,0 @@
-!# The stable, most recent version is always stored in pdm_opt.cpp. pdm_optX.cpp contains the history.
-opt0: 5/22/2021, moved from [r1][r2][l] to [l][r1][r2] on pw and pw2 tensors to improve cache memory usage; 54s to 49s
-opt1: 5/22/2021, since rho[r1][r2] = rho[r2][r1], adjusted squaring multiplication to improve cache usage; 49s
-opt2: 5/22/2021, further adjusted loop orders; no real gain
