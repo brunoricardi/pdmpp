@@ -12,7 +12,11 @@ Currently, a few interaction potentials are implemented:
 Additional interactions can be easily implemented in one of the subroutines.
 
 ## How to cite this
-Cite like..
+As the *LICENSE* says, this is an open-source scientific code. You are free to modify, share, and use it however it suits your needs. However, if you do publish something using the code either on parts or as a whole, I largely appreciate if you can cite it (and I have the feeling you would understand why). Here's how you can do it:
+
+Bruno R. de Abreu, *PDM++*, available at https://github.com/brunoricardi/pdmpp/ (2021)
+
+I provided a *pdm++.bib* file with this information.
 
 
 ## Overview of the code
