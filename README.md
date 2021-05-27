@@ -65,7 +65,7 @@ The source file */serial/pdm_serial.cpp* contains a version that has loops and t
 I parallelized a large part of the code with OpenMP. If you can use all the cores in a node, this will greatly improve performance, up to about a 20x factor. Some loops are parallelized in the number of partial waves, some others are parallelized in the spartial grid. A general rule for good performance is that you choose RGRID, AGRID and NWAVE values that are multiples of the number of threads you are goilg to call. If you want to use the parallel version, your source file is */omp/pdm_omp.cpp*. This has also been optimized for efficient cache usage.
 
 ## Additional documentation
-I'm working on a PDF with the theoretical grounds for this code. It will be listed here at some point (I hope).
+I'm working on a PDF with the theoretical grounds for this code. It will be listed here at some point (I hope). My MSc dissertation [4] has a lot of details, but unfortunately it was written in Portuguese. If you can read it, great!
 
 ## Prospects
 I have many ideas for improving this code, but very little time to implement them. If you would like to collaborate, do not hesitate and contact me!
@@ -77,3 +77,5 @@ I have many ideas for improving this code, but very little time to implement the
 [2] Ceperley, David M. "Path integrals in the theory of condensed helium." Reviews of Modern Physics 67, no. 2 (1995): 279.
 
 [3] de Abreu, Bruno R., Fabio Cinti, and Tommaso Macrì. "Superstripes and quasicrystals in bosonic systems with hard-soft corona interactions." arXiv preprint arXiv:2009.10203 (2020).
+
+[4] de Abreu, Bruno R., "Matriz densidade a baixas temperaturas para sistemas com interação de pares." (2014). http://repositorio.unicamp.br/handle/REPOSIP/276983
