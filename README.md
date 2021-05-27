@@ -14,8 +14,6 @@ Additional interactions can be easily implemented in one of the subroutines.
 Cite like..
 
 
-Additionally, I parallelized a large part of the code with OpenMP. If you can use all the cores in a node, this will greatly improve performance, up to about a 20x factor (see more details below). If you want to use the parallel version, your source file is /omp/pdm_omp.cpp. This has also been optimized for efficient cache usage.
-
 ## Overview of the code
 Info on the functions
 
