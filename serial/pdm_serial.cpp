@@ -16,7 +16,7 @@ using namespace std;
 using namespace std::chrono;
 
 // global constants	
-const int RN = 10;	// renormalization factor to plot in files
+//const int RN = 10;	// renormalization factor to plot in files
 const double PI =  3.1415926535897932384626433;  // PI :D
 const double PWC = 0.00001;	// cutoff for partial waves, if < 10^-5 set to zero
 
@@ -34,6 +34,7 @@ double T_HIGH_=0;	// initial temperatute (final=T_HIGH_/2^NSQ_)
 double TAU_MAX_=0;	// initial time step
 int NDIM_=0;		// number of spatial dimensions
 bool PRINT_PW_=false;	// print partial waves?
+int RN_=1;		// renormalization constant so output files are not too large
 
 
 // functions to run the squaring procedure: implementations at the end
@@ -253,11 +254,11 @@ int main()
 		{
 			fname = "pwl" + to_string(k) + ".csv";
 			partwave.open(fname.c_str(), ios::out);
-			for(i=0; i<NGRID_; i++)
+			for(i=0; i<NGRID_/RN_; i++)
 			{
-				for(j=0; j<NGRID_; j++)
+				for(j=0; j<NGRID_/RN_; j++)
 				{
-					partwave << grid[i] << "," << grid[j] << "," << pw[k][i][j] << endl;
+					partwave << grid[i*RN_] << "," << grid[j*RN_] << "," << pw[k][i*RN_][j*RN_] << endl;
 				}
 			}
 			partwave.close();
@@ -306,13 +307,13 @@ int main()
 	ofstream pdm;
 	fname = "pdm.csv";
 	pdm.open(fname.c_str(), ios::out);
-	for(i=0;i<NGRID_;i++)
+	for(i=0;i<NGRID_/RN_;i++)
 	{
-		for(j=0;j<NGRID_;j++)
+		for(j=0;j<NGRID_/RN_;j++)
 		{
 			for(k=0;k<NA_;k++)
 			{
-				pdm << grid[i] << "," << grid[j] << "," << agrid[k] << "," << pws[i][j][k] << endl;
+				pdm << grid[i*RN_] << "," << grid[j*RN_] << "," << agrid[k] << "," << pws[i*RN_][j*RN_][k] << endl;
 			}
 		}
 	}
@@ -390,6 +391,13 @@ void read_parameters()  // reads input parameters from file pdm.inp
 		else if ( command=="PRWAV" )
 		{	
 			PRINT_PW_ = true;
+		}
+		else if ( command=="PRNOR")
+		{
+			if(not (row >> RN_))
+				cout << command << " has a mssing argument in pdm.inp" << endl;
+			else if(row >> temp)
+				cout << command << " has too many arguments in pdm.inp" << endl;
 		}
 		else
 		{
