@@ -1,40 +1,9 @@
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
-#include <cmath>
-#include <vector>
-#include <string>
-#include <sstream>
-#include <gsl/gsl_sf_bessel.h>
-#include <gsl/gsl_sf_legendre.h>
-#include <gsl/gsl_sf_erf.h>
-#include <gsl/gsl_errno.h>
-#include <chrono>
-#include "omp.h"
+
 
 using namespace std;
 using namespace std::chrono;
 
-// global constants	
-//const int RN = 10;	// renormalization factor to plot in files
-const double PI =  3.1415926535897932384626433;  // PI :D
-const double PWC = 0.00001;	// cutoff for partial waves, if < 10^-5 set to zero
 
-
-// global variables that must be inputed
-double LAMBDA_=0;	// hbar^2/2m
-int POTID_=0;		// interaction to be used
-int NGRID_=0;		// number of grid points in r, r'
-double DR_=0;		// r,r' grid spacing
-int NA_=0;		// number of grid points in theta
-double DA_=0;		// theta grid spacing
-int NW_=0;		// number of partial waves
-int NSQ_=0;		// number of convolutions
-double T_HIGH_=0;	// initial temperatute (final=T_HIGH_/2^NSQ_)
-double TAU_MAX_=0;	// initial time step
-int NDIM_=0;		// number of spatial dimensions
-bool PRINT_PW_=false;	// print partial waves?
-int RN_=1;		// renormalization constant so output files are not too large
 
 
 // functions to run the squaring procedure: implementations at the end
@@ -130,7 +99,7 @@ int main()
 	double arg_exp;		//will receive the function
 	double it;
 
-	// start high temperature expression Ceperley1995 Eq. 4.42
+	// start high temperature expression, free-particle Ceperley1995 Eq. 4.42
 	for(k=0; k<NW_; k++)
 	{
 		for(i=0; i<NGRID_; i++)
@@ -161,7 +130,7 @@ int main()
 	}
 
 
-	// OK LET'S SQUARE IT NOW
+	// SQUARE IT NOW
 	double qp;
 	double quad;
 	quad = 0.;
@@ -183,7 +152,6 @@ int main()
 				{
 					r1 = grid[i];
 					r2 = grid[j];
-					#pragma omp parallel for
 					for(k=0; k<NGRID_; k++)			// loop over spatial grid 3 (here's the actual matrix multiplication)
 					{
 						qp = pw[l][i][k] * pw[l][j][k] * DR_;
@@ -325,90 +293,6 @@ int main()
 	cout << "Calculation completed successfully. \n Execution time was " << duration.count() << " s. \nSee you later!" << endl;
 	return 0;
 }
-
-
-
-
-void read_parameters()  // reads input parameters from file pdm.inp
-{
-	ifstream input;
-	string fname;
-	fname="pdm.inp";
-	string command;
-	double read_d;
-	int read_i;
-	
-	input.open(fname.c_str(), ios::in);
-	if (input.fail())
-	{
-		cout << "Input file pdm.inp could not be found!" << endl;
-		return;
-	}
-
-	string line;
-	string temp;
-	while(getline(input,line))
-	{
-		istringstream row(line);
-		row >> command;
-		if( command=="PHYSI" )
-		{
-			if(not (row >> LAMBDA_ >> NDIM_ >> POTID_))
-				cout << command << " has missing values in the input file pdm.inp" << endl;
-			else if (row >> temp)
-				cout << command << " has too many values in the input file pdm.inp" << endl;
-		}
-		else if ( command=="RGRID" )
-		{
-			if(not (row >> NGRID_ >> DR_))
-				cout << command << " has missing values in the input file pdm.inp" << endl;
-			else if (row >> temp)
-				cout << command << " has too many values in the input file pdm.inp" << endl;
-		}
-		else if ( command=="AGRID" )
-		{
-			if(not (row >> NA_))
-				cout << command << " has missing values in the input file pdm.inp" << endl;
-			else if (row >> temp)
-				cout << command << " has too many values in the input file pdm.inp" << endl;
-			DA_ = PI / double(NA_);
-		}
-		else if ( command=="NWAVE" )
-		{
-			if(not (row >> NW_))
-				cout << command << " has missing values in the input file pdm.inp" << endl;
-			else if (row >> temp)
-				cout << command << " has too many values in the input file pdm.inp" << endl;
-		}
-		else if ( command=="SQUAR")
-		{
-			if(not (row >> NSQ_ >> T_HIGH_))
-				cout << command << " has missing values in the input file pdm.inp" << endl;
-			else if (row >> temp)
-				cout << command << " has too many values in the input file pdm.inp" << endl;
-			TAU_MAX_ = 1. / T_HIGH_;
-		}
-		else if ( command=="PRWAV" )
-		{	
-			PRINT_PW_ = true;
-		}
-		else if ( command=="PRNOR")
-		{
-			if(not (row >> RN_))
-				cout << command << " has a mssing argument in pdm.inp" << endl;
-			else if(row >> temp)
-				cout << command << " has too many arguments in pdm.inp" << endl;
-		}
-		else
-		{
-			cout << command << " not an existing input command! Check pdm.inp" << endl;
-			return;
-		}
-	}
-	input.close();
-	return;
-}
-
 
 
 bool check_global_variables()
