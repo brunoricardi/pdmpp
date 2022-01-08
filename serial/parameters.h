@@ -26,7 +26,10 @@ class parameters {
         int printRn;	// renormalization constant so output files are not too large
 
     public:
-        int readInput();    // read inputs from file pdm.inp
+        int readInput();            // read inputs from file pdm.inp
+    
+    private:
+        void checkValues();    // set defaults for values not provided by client
 
 };
 #endif /* PARAMETERS_H */
