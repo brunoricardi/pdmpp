@@ -7,13 +7,16 @@
 // Data types
 #include "data.h"
 
-// Math, GSL
+// Math
 #include "math.h"
+
+// GSL
+#include "gsl.h"
 
 // Constants
 #include "constants.h"
 
-// Miscellaneos
+// Miscellaneous
 #include "misc.h"
 
 #endif /* INCLUDES_H */

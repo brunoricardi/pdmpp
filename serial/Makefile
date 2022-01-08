@@ -4,7 +4,7 @@ COPTS=-Wall -std=gnu++2a
 
 # GSL
 GSLROOT=/home/babreu/NumericalLibraries/gsl-2.7
-GSLINCLUDE=${GSLROOT}/include/gsl
+GSLINCLUDE=${GSLROOT}/include
 GSLLIB=${GSLROOT}/lib
 
 # LINKS
@@ -13,13 +13,16 @@ GSLLIB=${GSLROOT}/lib
 LDFLAGS=-lblas -llapack -lgslcblas -lgsl 
 
 
-objects: parameters.o potential.o
+objects: parameters.o potential.o pwaves.o
 
 parameters.o: parameters.cpp
 	$(CC) ${COPTS} -c $^
 
 potential.o: potential.cpp
 	$(CC) ${COPTS} -c $^
+
+pwaves.o: pwaves.cpp
+	$(CC) ${COPTS} -I${GSLINCLUDE} -c $^
 
 
 clean:
