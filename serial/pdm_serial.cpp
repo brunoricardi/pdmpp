@@ -307,37 +307,6 @@ double asympbessel_pf(double n, double x)		// this function computes the pre-fac
 
 
 
-double interaction(double r1, double r2)	// numerical integration of the potential
-{
-	double it;
-	const int NGRID=10000;	
-	double dr;
-	double r;
-	double rsmaller;
-	int i;
-	
-	if(r1 == r2)
-		it = pot(r1);
-	else
-	{
-		dr = abs(r1 - r2) / double(NGRID);
-		it = 0;
-		if(r1 > r2)
-			rsmaller = r2;
-		else
-			rsmaller = r1;
-		for(i=0; i<NGRID; i++)
-		{	
-			r = rsmaller + double(i)*dr;
-			it = it + pot(r)*dr;
-		}
-		it = it / abs(r1 - r2);
-	}
-
-	return it;
-}
-
-
 double free_pw(double r1, double r2, int l, double tau, int dim) // calculates expression for free partial waves
 {
 	double dm;

@@ -80,8 +80,6 @@ int parameters::readInput() {
 	string fname;
 	fname="pdm.inp";
 	string command;
-	double read_d;
-	int read_i;
 	
 	input.open(fname.c_str(), ios::in);
 	if (input.fail())
