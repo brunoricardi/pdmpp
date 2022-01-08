@@ -28,34 +28,46 @@ void parameters::checkValues() {
             this->lambda = 1.0;
             cout << "lambda value has not been provided, using default value: " << this->lambda << endl;
         }
+
         if(this->potId == 0) {
             cout << "Free particle potential potId = 0" << endl;
         }
+        else if (this->potId < 0 || this->potId > 3) {
+            cout << "potId not implemented (0 through 3 only)! Using free praticle expression" << endl;
+            this->potId = 0;
+        }
+
         if(this->nGrid == 0) {
             this->nGrid = 100;
             cout << "nGrid value has not been provided, using default value: " << this->nGrid << endl;
         }
+
         if(this->dr == 0) {
             this->dr = 0.01;
             cout << "dr value has not been provided, using default value: " << this->dr << endl;
         }
+
         if(this->na == 0) {
             this->na = 10;
             this->da = PI / double(this->na);
             cout << "na value has not been provided, using default value: " << this->na << endl;
         }
+
         if(this->nw == 0) {
             this->nw = 1;
             cout << "nw value has not been provided, using default value: " << this->nw << endl;
         }
+
         if(this->nSq == 0) {
             cout << "nSq value has not been provided, partial waves will not be squared" << endl;
         }
+
         if(this->tHigh == 0) {
             this->tHigh = 10.0;
             this->tauMax = 1.0 / this->tHigh;
             cout << "tHigh value has not been provided, using default value: " << this->tHigh << endl;
         }
+
         if(this->nDim == 0) {
             this->nDim = 2;
             cout << "nDim value has not been provided, using default value: " << this->nDim << endl;
