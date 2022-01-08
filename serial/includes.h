@@ -2,23 +2,18 @@
 #define INCLUDES_H
 
 // I/O
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
-#include <sstream>
+#include "inout.h"
 
 // Data types
-#include <vector>
-#include <string>
+#include "data.h"
 
 // Math, GSL
-#include <cmath>
-#include <gsl/gsl_sf_bessel.h>
-#include <gsl/gsl_sf_legendre.h>
-#include <gsl/gsl_sf_erf.h>
-#include <gsl/gsl_errno.h>
+#include "math.h"
 
-// Other
-#include <chrono>
+// Constants
+#include "constants.h"
+
+// Miscellaneos
+#include "misc.h"
 
 #endif /* INCLUDES_H */

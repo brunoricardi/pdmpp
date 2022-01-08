@@ -67,7 +67,7 @@ int parameters::readInput() {
 		{
 			if(not (row >> this->nw)) {
 				cout << command << " has missing values in the input file pdm.inp" << endl;
-                return -1
+                return -1;
             }
 			else if (row >> temp) {
 				cout << command << " has too many values in the input file pdm.inp" << endl;
@@ -92,7 +92,7 @@ int parameters::readInput() {
 		}
 		else if ( command=="PRNOR")
 		{
-			if(not (row >> this->rn)) {
+			if(not (row >> this->printRn)) {
 				cout << command << " has a mssing argument in pdm.inp" << endl;
                 return -1;
             }

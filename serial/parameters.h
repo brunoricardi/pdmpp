@@ -1,7 +1,9 @@
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
 
-#include "includes.h"
+#include "inout.h"
+#include "data.h"
+#include "constants.h"
 
 class parameters {
     public:
