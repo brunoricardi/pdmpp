@@ -2,7 +2,7 @@
 
 using namespace std;
 
-pwaves::pwaves(parameters _parameters) : exprEngine(_parameters) {
+pwaves::pwaves(parameters _parameters) : exprEngine(_parameters), pot(_parameters) {
     this->params = _parameters;
 }
 
@@ -24,10 +24,24 @@ int pwaves::initialize() {
         cout << "Allocation of partial waves failed" << endl;
         return -1;
     }
-    for(int i = 0; i < int(this->waves.size()); i++) {
-        for(int j = 0; i < this->params.nGrid; j++) {
-            for(int k = 0; k < j; k++) {
-                gsl_matrix_set(this->waves[i], j, k, this->exprEngine.freePW(i,j,k,this->params.tauMax));
+
+    double dm;
+    double it;
+    for(int i = 0; i < this->params.nGrid; i++) {
+        for(int j = 0; j <= i; j++) {
+            // interaction does not depend on angular momentum
+            it = this->pot.integrate(i*this->params.dr, j*this->params.dr);
+            for(int k = 0; k < int(this->waves.size()); k++) {
+                dm = it * this->exprEngine.freePW(k,i,j,this->params.tauMax);
+                gsl_matrix_set(this->waves[k], i, j, dm);
+            }
+        }
+    }
+    // copy lower triangular block
+    for(int i = 0; i < this->params.nGrid; i++) {
+        for(int j = 0; j < i; j++) {
+            for(int k = 0; k < int(this->waves.size()); k++) {
+                gsl_matrix_set(this->waves[k], j, i, gsl_matrix_get(this->waves[k], i, j));
             }
         }
     }

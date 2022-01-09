@@ -102,6 +102,9 @@ double potential::integrate(double r1, double r2) {
 	double rsmaller;
 	int i;
 	
+	if(this->params.potId == 0)
+		return 0.0;
+
 	if(r1 == r2)
 		it = this->value(r1);
 	else

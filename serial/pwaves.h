@@ -6,6 +6,7 @@
 #include "gsl.h"
 #include "data.h"
 #include "exprcalc.h"
+#include "potential.h"
 
 class pwaves {
     // constructor, destructor
@@ -19,6 +20,7 @@ class pwaves {
         std::vector<gsl_matrix*> waves;  
     private:
         exprcalc exprEngine;
+        potential pot;
     
     // METHODS
     public:
