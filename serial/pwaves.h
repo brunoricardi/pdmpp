@@ -5,20 +5,26 @@
 #include "parameters.h"
 #include "gsl.h"
 #include "data.h"
+#include "exprcalc.h"
 
 class pwaves {
+    // constructor, destructor
     public:
         pwaves(parameters _parameters);
         ~pwaves();
-        parameters params;
 
-    private:
-        int allocate();
-
+    // ATTRIBUTES
     public:
-        std::vector<gsl_matrix*> waves;                 // the waves
-        int initialize();                               // allocate and initialize with high temp expressions
-        double freepw(int l, int i, int j, double tau); // calculate interactionless expressions
+        parameters params;
+        std::vector<gsl_matrix*> waves;  
+    private:
+        exprcalc exprEngine;
+    
+    // METHODS
+    public:
+        int initialize();       // allocate and initialize with high temp expressions
+    private:
+        int allocate();         // allocates space for GSL matrices
 
 };
 
