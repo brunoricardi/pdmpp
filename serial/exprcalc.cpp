@@ -2,15 +2,15 @@
 
 using namespace std;
 
-exprcalc::exprcalc(parameters _parameters) {
-    this->params = _parameters;
+ExprCalc::ExprCalc(Parameters _parameters) {
+    this->parameters = _parameters;
 }
 
-exprcalc::~exprcalc() 
+ExprCalc::~ExprCalc() 
 {
 }
 
-double exprcalc::freePW(int l, int i, int j, double tau) {
+double ExprCalc::freePW(int l, int i, int j, double tau) {
     double dm;
 	double r12;
 	double besvar;
@@ -18,13 +18,13 @@ double exprcalc::freePW(int l, int i, int j, double tau) {
     double lambda;
     double r1, r2;
     
-    lambda = this->params.lambda;
-    r1 = i*this->params.dr;
-    r2 = j*this->params.dr;
+    lambda = this->parameters.lambda;
+    r1 = i*this->parameters.dr;
+    r2 = j*this->parameters.dr;
 	r12 = r1*r2;
 	besvar = r12 / (2. * lambda * tau);
 
-	switch(this->params.nDim) {
+	switch(this->parameters.nDim) {
 		case 2 :
 			if (besvar < 600.)
 			{
@@ -73,7 +73,7 @@ double exprcalc::freePW(int l, int i, int j, double tau) {
 	}
 }
 
-double exprcalc::asympBesselPF(double n, double x)
+double ExprCalc::asympBesselPF(double n, double x)
 {
 	double asbes;
 	asbes = (1./(2.*x)) * (1. - n*(n+1.)/(pow(2.*x, 2.)) + n*(n+1.)*(n-2.)*(n+3.)/(3.*pow(2.*x, 3.)) + n*(n+1.)*(5.*n*n + 5.*n - 12.)/(2.*pow(2.*x,4.)));

@@ -8,19 +8,19 @@
 #include "exprcalc.h"
 #include "potential.h"
 
-class pwaves {
+class PartWaves {
     // constructor, destructor
     public:
-        pwaves(parameters _parameters);
-        ~pwaves();
+        PartWaves(Parameters _parameters);
+        ~PartWaves();
 
     // ATTRIBUTES
     public:
-        parameters params;
+        Parameters parameters;
         std::vector<gsl_matrix*> waves;  
     private:
-        exprcalc exprEngine;
-        potential pot;
+        ExprCalc exprCalc;
+        Potential potential;
     
     // METHODS
     public:

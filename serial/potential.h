@@ -5,12 +5,17 @@
 #include "data.h"
 #include "math.h"
 
-class potential {
+class Potential {
+    // constructor, destructor
     public:
-        potential(parameters _parameters);
-        ~potential();
-        parameters params;
+        Potential(Parameters _parameters);
+        ~Potential();
 
+    // attributes
+    public:
+        Parameters parameters;
+
+    // methods
     public:
         double value(double r);                 // value of potential at a certain relative distance          
         double integrate(double r1, double r2); // integrate potential over a straight line between r1 and r2

@@ -5,10 +5,10 @@
 #include "data.h"
 #include "constants.h"
 
-class parameters {
+class Parameters {
     public:
-        parameters();
-        ~parameters();
+        Parameters();
+        ~Parameters();
 
     public:
         double lambda;	// hbar^2/2m
@@ -19,8 +19,8 @@ class parameters {
         double da;		// theta grid spacing
         int nw;		    // number of partial waves
         int nSq;		// number of convolutions
-        double tHigh;	// initial temperatute (final=tHigh/2^nsq)
-        double tauMax;	// initial time step
+        double temp;	// initial temperatute (final=tHigh/2^nsq)
+        double tau;	// initial time step
         int nDim;		// number of spatial dimensions
         bool printPw;	// print partial waves?
         int printRn;	// renormalization constant so output files are not too large

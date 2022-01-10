@@ -13,7 +13,10 @@ GSLLIB=${GSLROOT}/lib
 LDFLAGS=-lblas -llapack -lgslcblas -lgsl 
 
 
-objects: exprcalc.o parameters.o potential.o pwaves.o
+objects: convoluter.o exprcalc.o parameters.o potential.o pwaves.o
+
+convoluter.o: convoluter.cpp
+	$(CC) ${COPTS} -I${GSLINCLUDE} -c $^
 
 exprcalc.o: exprcalc.cpp
 	$(CC) ${COPTS} -I${GSLINCLUDE} -c $^

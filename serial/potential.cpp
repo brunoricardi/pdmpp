@@ -2,18 +2,18 @@
 
 using namespace std;
 
-potential::potential(parameters _parameters) {
-    this->params = _parameters;
+Potential::Potential(Parameters _parameters) {
+    this->parameters = _parameters;
 }
 
-potential::~potential() 
+Potential::~Potential() 
 {
 }
 
-double potential::value(double r) {
+double Potential::value(double r) {
 	double pot;
 	vector<double> pars(20);
-	switch(this->params.potId) {
+	switch(this->parameters.potId) {
 		case 0 :		// free particle
 			pot = 0.;
 			return pot;		
@@ -94,7 +94,7 @@ double potential::value(double r) {
 }
 
 
-double potential::integrate(double r1, double r2) {
+double Potential::integrate(double r1, double r2) {
 	double it;
 	const int NGRID=10000;	
 	double dr;
@@ -102,7 +102,7 @@ double potential::integrate(double r1, double r2) {
 	double rsmaller;
 	int i;
 	
-	if(this->params.potId == 0)
+	if(this->parameters.potId == 0)
 		return 0.0;
 
 	if(r1 == r2)

@@ -5,12 +5,17 @@
 #include "math.h"
 #include "parameters.h"
 
-class exprcalc {
+class ExprCalc {
+    // constructor, destructor
     public:
-        exprcalc(parameters _parameters);
-        ~exprcalc();
-        parameters params;
+        ExprCalc(Parameters _parameters);
+        ~ExprCalc();
 
+    // attributes
+    public:
+        Parameters parameters;
+
+    // methods
     public:
         double freePW(int l, int i, int j, double tau);     // free partial wave expression
         double asympBesselPF(double n, double x);           // pre-factor of the asymptotic expression for Bessel functions

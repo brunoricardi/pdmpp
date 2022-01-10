@@ -2,7 +2,7 @@
 
 using namespace std;
 
-parameters::parameters()
+Parameters::Parameters()
 {
         this->lambda = 0;
         this->potId = 0;
@@ -12,18 +12,18 @@ parameters::parameters()
         this->da = 0;
         this->nw = 0;
         this->nSq = 0;
-        this->tHigh = 0;
-        this->tauMax = 0;
+        this->temp = 0;
+        this->tau = 0;
         this->nDim = 0;
         this->printPw = false;
         this->printRn = 1;
 }
 
-parameters::~parameters()
+Parameters::~Parameters()
 {}
 
 
-void parameters::checkValues() {
+void Parameters::checkValues() {
         if(this->lambda == 0) {
             this->lambda = 1.0;
             cout << "lambda value has not been provided, using default value: " << this->lambda << endl;
@@ -62,10 +62,10 @@ void parameters::checkValues() {
             cout << "nSq value has not been provided, partial waves will not be squared" << endl;
         }
 
-        if(this->tHigh == 0) {
-            this->tHigh = 10.0;
-            this->tauMax = 1.0 / this->tHigh;
-            cout << "tHigh value has not been provided, using default value: " << this->tHigh << endl;
+        if(this->temp == 0) {
+            this->temp = 10.0;
+            this->tau = 1.0 / this->temp;
+            cout << "tHigh value has not been provided, using default value: " << this->temp << endl;
         }
 
         if(this->nDim == 0) {
@@ -75,7 +75,7 @@ void parameters::checkValues() {
 }
 
 
-int parameters::readInput() {
+int Parameters::readInput() {
     ifstream input;
 	string fname;
 	fname="pdm.inp";
@@ -141,7 +141,7 @@ int parameters::readInput() {
 		}
 		else if ( command=="SQUAR")
 		{
-			if(not (row >> this->nSq >> this->tHigh)) {
+			if(not (row >> this->nSq >> this->temp)) {
 				cout << command << " has missing values in the input file pdm.inp" << endl;
                 return -1;
             }
@@ -149,7 +149,7 @@ int parameters::readInput() {
 				cout << command << " has too many values in the input file pdm.inp" << endl;
                 return -1;
             }
-			this->tauMax = 1. / tHigh;
+			this->tau = 1. / this->temp;
 		}
 		else if ( command=="PRWAV" )
 		{	
