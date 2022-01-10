@@ -19,8 +19,8 @@ double ExprCalc::freePW(int l, int i, int j, double tau) {
     double r1, r2;
     
     lambda = this->parameters.lambda;
-    r1 = i*this->parameters.dr;
-    r2 = j*this->parameters.dr;
+    r1 = (i+1)*this->parameters.dr;
+    r2 = (j+1)*this->parameters.dr;
 	r12 = r1*r2;
 	besvar = r12 / (2. * lambda * tau);
 

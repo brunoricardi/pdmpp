@@ -19,4 +19,12 @@
 // Miscellaneous
 #include "misc.h"
 
+
+// PDM++ Libraries
+#include "convoluter.h"
+#include "exprcalc.h"
+#include "parameters.h"
+#include "potential.h"
+#include "pwaves.h"
+
 #endif /* INCLUDES_H */

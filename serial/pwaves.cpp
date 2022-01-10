@@ -31,6 +31,8 @@ int PartWaves::initialize() {
         for(int j = 0; j <= i; j++) {
             // interaction does not depend on angular momentum
             it = this->potential.integrate(i*this->parameters.dr, j*this->parameters.dr);
+            it = -this->parameters.tau * it;
+            it = exp(it);
             for(int k = 0; k < int(this->waves.size()); k++) {
                 dm = it * this->exprCalc.freePW(k,i,j,this->parameters.tau);
                 gsl_matrix_set(this->waves[k], i, j, dm);
@@ -45,5 +47,7 @@ int PartWaves::initialize() {
             }
         }
     }
+    cout << "Partial waves initialized with high temperature expressions" << endl;
+    cout << flush;
     return 0;
 }

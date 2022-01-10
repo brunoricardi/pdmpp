@@ -10,10 +10,13 @@ GSLLIB=${GSLROOT}/lib
 # LINKS
 # gslcblas: GSL with BLAS
 # gsl: GNU Scientific Library
-LDFLAGS=-lblas -llapack -lgslcblas -lgsl 
+LDFLAGS=-lgsl -lgslcblas -lm
 
 
-objects: convoluter.o exprcalc.o parameters.o potential.o pwaves.o
+all: objects
+	$(CC) -L${GSLLIB} -o pdm.exe *.o ${LDFLAGS}
+
+objects: convoluter.o exprcalc.o parameters.o pdm.o potential.o pwaves.o
 
 convoluter.o: convoluter.cpp
 	$(CC) ${COPTS} -I${GSLINCLUDE} -c $^
@@ -23,6 +26,9 @@ exprcalc.o: exprcalc.cpp
 
 parameters.o: parameters.cpp
 	$(CC) ${COPTS} -c $^
+
+pdm.o: pdm.cpp
+	$(CC) ${COPTS} -I${GSLINCLUDE} -c $^
 
 potential.o: potential.cpp
 	$(CC) ${COPTS} -c $^

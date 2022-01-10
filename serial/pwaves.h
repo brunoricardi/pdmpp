@@ -25,7 +25,7 @@ class PartWaves {
     // METHODS
     public:
         int initialize();       // allocate and initialize with high temp expressions
-    private:
+    public:
         int allocate();         // allocates space for GSL matrices
 
 };
