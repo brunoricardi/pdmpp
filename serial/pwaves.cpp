@@ -2,7 +2,7 @@
 
 using namespace std;
 
-PartWaves::PartWaves(Parameters _parameters) : exprCalc(_parameters), potential(_parameters) {
+PartWaves::PartWaves(Parameters _parameters) : potential(_parameters) {
     this->parameters = _parameters;
 }
 
@@ -34,7 +34,7 @@ int PartWaves::initialize() {
             it = -this->parameters.tau * it;
             it = exp(it);
             for(int k = 0; k < int(this->waves.size()); k++) {
-                dm = it * this->exprCalc.freePW(k,i,j,this->parameters.tau);
+                dm = it * this->exprCalc.freePW(k,i,j,this->parameters);
                 gsl_matrix_set(this->waves[k], i, j, dm);
             }
         }

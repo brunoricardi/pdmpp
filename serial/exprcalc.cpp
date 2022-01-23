@@ -2,29 +2,30 @@
 
 using namespace std;
 
-ExprCalc::ExprCalc(Parameters _parameters) {
-    this->parameters = _parameters;
+ExprCalc::ExprCalc() {
 }
 
 ExprCalc::~ExprCalc() 
 {
 }
 
-double ExprCalc::freePW(int l, int i, int j, double tau) {
+double ExprCalc::freePW(int l, int i, int j, Parameters parameters) {
     double dm;
 	double r12;
 	double besvar;
 	double arg_exp;
     double lambda;
+	double tau;
     double r1, r2;
     
-    lambda = this->parameters.lambda;
-    r1 = (i+1)*this->parameters.dr;
-    r2 = (j+1)*this->parameters.dr;
+    lambda = parameters.lambda;
+	tau = parameters.tau;
+    r1 = (i+1)*parameters.dr;
+    r2 = (j+1)*parameters.dr;
 	r12 = r1*r2;
 	besvar = r12 / (2. * lambda * tau);
 
-	switch(this->parameters.nDim) {
+	switch(parameters.nDim) {
 		case 2 :
 			if (besvar < 600.)
 			{

@@ -18,9 +18,9 @@ class PartWaves {
     public:
         Parameters parameters;
         std::vector<gsl_matrix*> waves;  
+        Potential potential;
     private:
         ExprCalc exprCalc;
-        Potential potential;
     
     // METHODS
     public:
